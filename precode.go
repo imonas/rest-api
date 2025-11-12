@@ -81,7 +81,7 @@ func getTask(w http.ResponseWriter, r *http.Request) {
 
 	task, ok := tasks[id]
 	if !ok {
-		http.Error(w, "Задача не найдена", http.StatusNoContent)
+		http.Error(w, "Задача не найдена", http.StatusNotFound)
 		return
 	}
 
@@ -100,7 +100,7 @@ func deleteTask(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
 	_, ok := tasks[id]
 	if !ok {
-		http.Error(w, "Задача не найдена", http.StatusBadRequest)
+		http.Error(w, "Задача не найдена", http.StatusNotFound)
 		return
 	}
 	delete(tasks, id)
